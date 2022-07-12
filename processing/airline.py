@@ -7,7 +7,7 @@ DB_NAME = 'airline'
 def set_flight_status(flight_id, status) -> int:
     sql = '''
     update airline.flights
-        set status = %s
+        set status = '%s'
         where flight_id = %d
     ''' % (status, flight_id)
 
