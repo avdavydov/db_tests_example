@@ -1,5 +1,3 @@
-import re
-
 import sqlalchemy.engine
 from sqlalchemy import create_engine
 
@@ -15,8 +13,7 @@ class MetaSingleton(type):
 
 class EngineFactory(metaclass=MetaSingleton):
     connections, db_urls = ({},) * 2
-    user, passw, stand, db_name = (None,)*4
-
+    user, passw, stand, db_name = (None,) * 4
 
     def get_engine(self, db_name, schema_name=None) -> sqlalchemy.engine.Engine:
         self.db_name = db_name
@@ -46,13 +43,7 @@ class EngineFactory(metaclass=MetaSingleton):
 
     def get_postgres_url(self, base_name) -> str:
         stand = self.stand.lower()
-        user = self.user
-        passw = self.passw
 
         if stand == 'localhost':
-            return self.db_urls.get(base_name) if self.db_urls.get(base_name) else ValueError(f'''URL для параметров stand={stand}, db_name='{base_name}' не найден ''')
-            # if self.db_urls.get(base_name):
-            #     url = f'postgresql://{user}:{passw}@{self.db_urls.get(base_name)}' if passw else f'postgresql://{user}@{self.db_urls.get(base_name)}'
-            #     return url
-            # else:
-            #     raise ValueError(f'''URL для параметров stand={stand}, db_name='{base_name}' не найден ''')
+            return self.db_urls.get(base_name) if self.db_urls.get(base_name) else ValueError(
+                f'''URL для параметров stand={stand}, db_name='{base_name}' не найден ''')

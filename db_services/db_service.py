@@ -1,6 +1,7 @@
 from .engine_factory import EngineFactory
 engine = EngineFactory()
 
+
 def get_from_postgres(sql, db_name, schema_name=None) -> list:
     result = []
     pg_engine = engine.get_engine(db_name=db_name, schema_name=schema_name)
