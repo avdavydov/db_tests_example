@@ -14,7 +14,7 @@ class MetaSingleton(type):
 
 
 class EngineFactory(metaclass=MetaSingleton):
-    connections, db_urls_local = ({},)*2
+    connections, db_urls = ({},) * 2
     user, passw, stand, db_name = (None,)*4
 
 
@@ -41,8 +41,8 @@ class EngineFactory(metaclass=MetaSingleton):
             engine.dispose()
         self.connections = {}
 
-    def add_local_db(self, base_name, url):
-        self.db_urls_local[base_name] = url
+    def add_db(self, base_name, url):
+        self.db_urls[base_name] = url
 
     def get_postgres_url(self, base_name) -> str:
         stand = self.stand.lower()
@@ -50,8 +50,8 @@ class EngineFactory(metaclass=MetaSingleton):
         passw = self.passw
 
         if stand == 'localhost':
-            if self.db_urls_local.get(base_name):
-                url = f'postgresql://{user}:{passw}@{self.db_urls_local.get(base_name)}' if passw else f'postgresql://{user}@{self.db_urls_local.get(base_name)}'
+            if self.db_urls.get(base_name):
+                url = f'postgresql://{user}:{passw}@{self.db_urls.get(base_name)}' if passw else f'postgresql://{user}@{self.db_urls.get(base_name)}'
                 return url
             else:
                 raise ValueError(f'''URL для параметров stand={stand}, db_name='{base_name}' не найден ''')
