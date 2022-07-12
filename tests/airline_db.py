@@ -14,12 +14,12 @@ class Aircrafts(Base):
 
 
 class Flights(Base):
-    __tablename__ = 'aircrafts'
+    __tablename__ = 'flights'
     __table_args__ = {'schema': 'airline'}
 
     flight_id = Column(INTEGER, nullable=False, primary_key=True, comment='Идентификатор рейса')
     flight_no = Column(String(10), nullable=False, comment='Номер рейса')
-    aircraft_code = Column(String(3), ForeignKey('airline.aircrafts'), nullable=False, comment='Код самолета, IATA')
+    aircraft_code = Column(String(3), ForeignKey('airline.aircrafts.aircraft_code'), nullable=False, comment='Код самолета, IATA')
     status = Column(String(20), nullable=False, comment='Статус рейса')
 
 

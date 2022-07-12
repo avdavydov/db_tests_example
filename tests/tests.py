@@ -11,3 +11,4 @@ def test_db():
 def test_debug(test_db):
     while True:
         a = 1
+    assert 1==2

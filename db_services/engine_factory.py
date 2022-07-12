@@ -50,8 +50,9 @@ class EngineFactory(metaclass=MetaSingleton):
         passw = self.passw
 
         if stand == 'localhost':
-            if self.db_urls.get(base_name):
-                url = f'postgresql://{user}:{passw}@{self.db_urls.get(base_name)}' if passw else f'postgresql://{user}@{self.db_urls.get(base_name)}'
-                return url
-            else:
-                raise ValueError(f'''URL для параметров stand={stand}, db_name='{base_name}' не найден ''')
+            return self.db_urls.get(base_name) if self.db_urls.get(base_name) else ValueError(f'''URL для параметров stand={stand}, db_name='{base_name}' не найден ''')
+            # if self.db_urls.get(base_name):
+            #     url = f'postgresql://{user}:{passw}@{self.db_urls.get(base_name)}' if passw else f'postgresql://{user}@{self.db_urls.get(base_name)}'
+            #     return url
+            # else:
+            #     raise ValueError(f'''URL для параметров stand={stand}, db_name='{base_name}' не найден ''')
