@@ -28,7 +28,7 @@ def test_get_flight_status_after(test_db):
     assert get_flight_status(flight_id=33043) == [['Delayed']]
 
 # функция, для случая если нужно оставить активным докер-контейнер после завершения работы тестов
-# def test_debug(test_db):
-#     while True:
-#         a = 1
-#     assert 1 == 2
+def test_debug(test_db):
+    while True:
+        a = 1
+    assert 1 == 2

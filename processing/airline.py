@@ -3,7 +3,7 @@ from db_services.db_service import post_to_postgres
 
 DB_NAME = 'airline'
 
-
+# Установить статуса рейса
 def set_flight_status(flight_id, status) -> int:
     sql = '''
     update airline.flights
@@ -16,7 +16,7 @@ def set_flight_status(flight_id, status) -> int:
     except Exception as e:
         raise RuntimeError(e)
 
-
+# Получить статус рейса
 def get_flight_status(flight_id) -> list:
     sql = '''
     select status
