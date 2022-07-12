@@ -15,6 +15,3 @@ def get_premium_psg_list(limit) -> list:
         return get_from_postgres(sql=sql, db_name=DB_NAME)
     except Exception as e:
         raise RuntimeError(e)
-
-
-
