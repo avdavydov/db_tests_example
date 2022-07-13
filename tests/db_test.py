@@ -50,6 +50,7 @@ class TestBases(metaclass=MetaSingleton):
         __connection.execution_options(isolation_level='AUTOCOMMIT').execute(f'create database {base_name}')
         __host, __port = self.main_url.replace('postgresql+psycopg2://test:test@', '').replace('/test', '').split(':')
         __new_base_url = f'postgresql+psycopg2://test:test@{__host}:{__port}/{base_name}'
+        #Добавляем соединение с новой базой в EngineFactory
         __engine = EngineFactory()
         __engine.add_db(base_name=base_name, url=__new_base_url)
 
